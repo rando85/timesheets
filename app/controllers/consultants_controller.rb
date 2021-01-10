@@ -64,7 +64,7 @@ class ConsultantsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_consultant
-      @consultant = Consultant.find(params[:id])
+      @consultant = Consultant.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -64,7 +64,7 @@ class ReasonsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reason
-      @reason = Reason.find(params[:id])
+      @reason = Reason.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

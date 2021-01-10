@@ -57,3 +57,29 @@ while f.year <= 2021 do
 end
 
 puts "Time values generated"
+
+#other catalogs
+Reason.create!(reason: "Placer")
+Reason.create!(reason: "Enfermedad")
+puts "Reasons created"
+
+ipc = Team.create!(team: "IPC")
+mstr = Team.create!(team: "MSTR")
+puts "Teams created"
+
+Consultant.create!(name: "Alejandro Aranda Parra", team_id: ipc.id)
+Consultant.create!(name: "Carlos Enrique Moya Muñoz", team_id: ipc.id)
+Consultant.create!(name: "Daniel Mauricio Avendaño Pérez", team_id: ipc.id)
+Consultant.create!(name: "Ezequiel Cano Salinas", team_id: ipc.id)
+Consultant.create!(name: "Gerardo Garzon Villar", team_id: ipc.id)
+Consultant.create!(name: "Ivan Olea Lujano", team_id: ipc.id)
+Consultant.create!(name: "Julien Clément Connaulte", team_id: ipc.id)
+Consultant.create!(name: "Oscar Roberto Rivera Trejo", team_id: ipc.id)
+Consultant.create!(name: "Ruben Valdes Flores", team_id: ipc.id)
+Consultant.create!(name: "Valeria Sánchez Rivera", team_id: ipc.id)
+Consultant.create!(name: "Daniel Cisneros Medina", team_id: mstr.id)
+Consultant.create!(name: "Edgar Antonio Alpizar Villar", team_id: mstr.id)
+Consultant.create!(name: "José Ernesto Navarro Carreón", team_id: mstr.id)
+Consultant.create!(name: "Marco Antonio Valencia", team_id: mstr.id)
+Consultant.create!(name: "Rodrigo Nakamura Lara", team_id: mstr.id)
+puts "Consultants created"
