@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Week:</strong>
+  <%= @day.week_id %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @day.month_id %>
+</p>
+
+<p>
+  <strong>Date str:</strong>
+  <%= @day.date_str %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @day.date %>
+</p>
+
+<%= link_to 'Edit', edit_day_path(@day) %> |
+<%= link_to 'Back', days_path %>

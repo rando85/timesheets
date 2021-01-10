@@ -1,0 +1,32 @@
+<%= form_with(model: vacation) do |form| %>
+  <% if vacation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(vacation.errors.count, "error") %> prohibited this vacation from being saved:</h2>
+
+      <ul>
+        <% vacation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :day_id %>
+    <%= form.text_field :day_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :consultant_id %>
+    <%= form.text_field :consultant_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason_id %>
+    <%= form.text_field :reason_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
