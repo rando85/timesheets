@@ -4,7 +4,7 @@ class ConsultantsController < ApplicationController
   # GET /consultants
   # GET /consultants.json
   def index
-    @consultants = Consultant.all
+    @consultants = Consultant.all.includes(:team)
   end
 
   # GET /consultants/1
