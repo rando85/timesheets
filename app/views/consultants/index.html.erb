@@ -27,3 +27,45 @@
 <br>
 
 <%= link_to 'New Consultant', new_consultant_path %>
+
+<%
+#hash of consultats to keep ID in memory
+consultants = {}
+
+#hash of consultants to be ignored to be searched again in the database
+ignore = {}
+
+#number of rows in cvs file
+csv_rows = 0
+
+#number of queries sent to the db
+queries = 0
+
+CSV.foreach("#{Rails.root}/public/2021-01-09_07_00_01_hrs_diario.csv", headers: true) do |row|
+  csv_rows += 1
+  registrador = row['registrador']
+  if ignore[registrador].nil?
+    %> <%= "<br>The consultant #{registrador} does not exists in the ignore hash".html_safe %> <%
+    if consultants[registrador].nil?
+      %> <%= "<br>The consultant #{registrador} does not exists in the consultants hash".html_safe %> <%
+      %> <%= "<br>Search #{row['registrador']} in the database".html_safe %> <%
+      consultant = Consultant.find_by name: registrador
+      queries += 1
+      if !consultant.nil?
+        %> <%= "<br>#{consultant.name} exists in the db, add him to the consultants hash".html_safe %> <%
+        consultants[consultant.name] = consultant.id
+        %> <%= "<br>#{consultants}".html_safe %> <%
+      else
+        %> <%= "<br>The consultant #{registrador} does not exists in the db, add him to the ignore hash".html_safe %> <%
+        ignore[registrador] = true
+      end
+    else
+      %> <%= "<br>The consultant #{registrador} exists in the consultants hash".html_safe %> <%
+    end
+  else
+    %> <%= "<br>Ignore the consultant #{registrador}".html_safe %> <%
+  end
+end
+%>
+<br>Número de registros en el CSV <%= csv_rows %>
+<br>Número de queries enviados a la base <%= queries %>
