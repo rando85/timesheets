@@ -1,0 +1,14 @@
+<% if !notice.nil? %>
+  <div class="alert alert-success col-2" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<h1>Load daily file</h1>
+<%= form_with url: loads_create_daily_path, method: :post do |form| %>
+  <div class="form-group">
+    <%= form.label :file, "Upload CSV File" %>
+    <%= form.file_field :file, :class => 'form-control-file', required: true %>
+  </div>
+  <%= form.submit "Upload CSV", :class => 'btn btn-block btn-outline-primary col-1' %>
+<% end %>

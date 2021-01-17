@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_10_021514) do
+ActiveRecord::Schema.define(version: 2021_01_17_052036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2021_01_10_021514) do
     t.string "slug"
     t.index ["slug"], name: "index_consultants_on_slug", unique: true
     t.index ["team_id"], name: "index_consultants_on_team_id"
+  end
+
+  create_table "daily_hours", force: :cascade do |t|
+    t.decimal "hours"
+    t.text "issue"
+    t.bigint "day_id", null: false
+    t.bigint "consultant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["consultant_id"], name: "index_daily_hours_on_consultant_id"
+    t.index ["day_id"], name: "index_daily_hours_on_day_id"
   end
 
   create_table "days", force: :cascade do |t|
@@ -82,6 +93,17 @@ ActiveRecord::Schema.define(version: 2021_01_10_021514) do
     t.index ["reason_id"], name: "index_vacations_on_reason_id"
   end
 
+  create_table "weekly_hours", force: :cascade do |t|
+    t.decimal "hours"
+    t.text "issue"
+    t.bigint "day_id", null: false
+    t.bigint "consultant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["consultant_id"], name: "index_weekly_hours_on_consultant_id"
+    t.index ["day_id"], name: "index_weekly_hours_on_day_id"
+  end
+
   create_table "weeks", force: :cascade do |t|
     t.string "week"
     t.datetime "created_at", precision: 6, null: false
@@ -95,10 +117,14 @@ ActiveRecord::Schema.define(version: 2021_01_10_021514) do
   end
 
   add_foreign_key "consultants", "teams"
+  add_foreign_key "daily_hours", "consultants"
+  add_foreign_key "daily_hours", "days"
   add_foreign_key "days", "months"
   add_foreign_key "days", "weeks"
   add_foreign_key "months", "years"
   add_foreign_key "vacations", "consultants"
   add_foreign_key "vacations", "days"
   add_foreign_key "vacations", "reasons"
+  add_foreign_key "weekly_hours", "consultants"
+  add_foreign_key "weekly_hours", "days"
 end

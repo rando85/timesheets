@@ -5,20 +5,24 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     @teams = Team.all
+    @page_title = "Teams"
   end
 
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @page_title = "#{@team.team} - Teams"
   end
 
   # GET /teams/new
   def new
     @team = Team.new
+    @page_title = "New Team"
   end
 
   # GET /teams/1/edit
   def edit
+    @page_title = "#{@team.team} - Edit Team"
   end
 
   # POST /teams

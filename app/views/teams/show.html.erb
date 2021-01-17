@@ -5,5 +5,5 @@
   <%= @team.team %>
 </p>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to "<i class='fas fa-edit'></i> Edit".html_safe, edit_team_path(@team), class: "btn btn-warning" %> |
+<%= link_to "<i class='fas fa-chevron-circle-left'></i> Back".html_safe, teams_path, class: "btn btn-secondary" %>
