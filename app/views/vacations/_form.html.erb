@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :day_id %>
-    <%= form.text_field :day_id %>
+    <%= form.collection_select :day_id, @days, :id, :date_str %>
   </div>
 
   <div class="field">
     <%= form.label :consultant_id %>
-    <%= form.text_field :consultant_id %>
+    <%= form.collection_select :consultant_id, @consultants, :id, :name %>
   </div>
 
   <div class="field">
     <%= form.label :reason_id %>
-    <%= form.text_field :reason_id %>
+    <%= form.collection_select :reason_id, @reasons, :id, :reason %>
   </div>
 
   <div class="actions">

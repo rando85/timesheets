@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2021_01_18_043218) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "is_active", default: 1
-    t.integer "is_weekend", default: 0
     t.index ["slug"], name: "index_consultants_on_slug", unique: true
     t.index ["team_id"], name: "index_consultants_on_team_id"
   end
@@ -45,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_01_18_043218) do
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "is_weekend", default: 0
     t.index ["month_id"], name: "index_days_on_month_id"
     t.index ["week_id"], name: "index_days_on_week_id"
   end

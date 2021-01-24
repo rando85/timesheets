@@ -1,10 +1,11 @@
 class VacationsController < ApplicationController
   before_action :set_vacation, only: [:show, :edit, :update, :destroy]
+  before_action :set_vars, only: [:new, :edit]
 
   # GET /vacations
   # GET /vacations.json
   def index
-    @vacations = Vacation.all
+    @vacations = Vacation.order(:day_id).order(:consultant_id)
   end
 
   # GET /vacations/1
@@ -65,6 +66,13 @@ class VacationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vacation
       @vacation = Vacation.find(params[:id])
+    end
+
+    # Create var contents for combo box
+    def set_vars
+      @days = Day.all
+      @consultants = Consultant.where({is_active: 1}).order(:name)
+      @reasons = Reason.all
     end
 
     # Only allow a list of trusted parameters through.

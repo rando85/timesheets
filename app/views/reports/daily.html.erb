@@ -18,11 +18,18 @@
         <tr>
           <td><%= t[0] %></td>
           <td><%= c[0] %></td>
-          <% total = 0
+          <%
+          total = 0
           c[1].each do |h|
-            total += h[1]
+            total += h[1][:hours]
+            # To-Do: move this validation to controller
+            #         it's still missing a validation for the real hours a consultant should work
+            #         because there is a table where we store special hours, those are days where we work less hours
+            if h[1][:hours] < 8 and h[1][:cell_class] == ""
+              h[1][:cell_class] = "table-danger"
+            end
           %>
-            <td><%= h[1] %></td>
+            <td class="<%= h[1][:cell_class] %>"><%= h[1][:hours] %></td>
           <% end %>
           <td><%= total %></td>
         </tr>

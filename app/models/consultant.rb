@@ -6,4 +6,5 @@ class Consultant < ApplicationRecord
   
   belongs_to :team
   has_many :daily_hours
+  has_many :vacations
 end

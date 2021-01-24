@@ -15,9 +15,9 @@
   <tbody>
     <% @vacations.each do |vacation| %>
       <tr>
-        <td><%= vacation.day_id %></td>
-        <td><%= vacation.consultant_id %></td>
-        <td><%= vacation.reason_id %></td>
+        <td><%= vacation.day.date_str %></td>
+        <td><%= vacation.consultant.name %></td>
+        <td><%= vacation.reason.reason %></td>
         <td><%= link_to 'Show', vacation %></td>
         <td><%= link_to 'Edit', edit_vacation_path(vacation) %></td>
         <td><%= link_to 'Destroy', vacation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -4,7 +4,7 @@ class ConsultantsController < ApplicationController
   # GET /consultants
   # GET /consultants.json
   def index
-    @consultants = Consultant.all.includes(:team)
+    @consultants = Consultant.all.includes(:team).order(:team_id, :name)
   end
 
   # GET /consultants/1
@@ -69,6 +69,6 @@ class ConsultantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def consultant_params
-      params.require(:consultant).permit(:team_id, :name)
+      params.require(:consultant).permit(:team_id, :name, :is_active)
     end
 end
